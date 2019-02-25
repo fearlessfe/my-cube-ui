@@ -12,9 +12,11 @@
         </div>
         <!-- preloads item for get its height, remove it after caculating height-->
         <div class="sky-recycle-list-pool">
-          <div class="sky-recycle-list-item sky-recycle-list-invisible"  v-for="(item, index) in items" v-if="!item.isTombstone && !item.height" :ref="'preloads'+index" :key="index">
+          <template v-for="(item, index) in items">
+          <div class="sky-recycle-list-item sky-recycle-list-invisible" v-if="!item.isTombstone && !item.height" :ref="'preloads'+index" :key="index">
             <slot name="item" :data="item.data"></slot>
           </div>
+          </template>
           <div ref="tomb" class="sky-recycle-list-item sky-recycle-list-invisible">
             <slot name="tombstone"></slot>
           </div>

@@ -18,8 +18,7 @@
             <span>{{ pullUpTxt }}</span>
           </div>
           <div class="after-trigger" v-else>
-            <span>加载中</span>
-            <!-- <loading></loading> -->
+            <animation-loading :play="isPullingDown"></animation-loading>
           </div>
         </div>
       </slot>
@@ -38,8 +37,7 @@
           </div>
           <div class="after-trigger" v-show="!beforePullDown">
             <div v-show="isPullingDown" class="loading">
-              <span>加载中</span>
-              <!-- <loading></loading> -->
+              <animation-loading :play="isPullingDown"></animation-loading>
             </div>
             <div v-show="!isPullingDown" class="cube-pulldown-loaded"><span>{{ refreshTxt }}</span></div>
           </div>
@@ -53,6 +51,7 @@
   import BScroll from 'better-scroll'
   import scrollMixin from '../../common/mixins/scroll'
   import deprecatedMixin from '../../common/mixins/deprecated'
+  import AnimationLoading from '../loadig/loading.vue'
   import { getRect } from '../../common/helpers/dom'
   import { camelize } from '../../common/lang/string'
 
@@ -317,6 +316,9 @@
           this.pullDownStyle = `top:${Math.min(pos.y - this.pullDownStop, 0)}px`
         }
       },
+    },
+    components: {
+      AnimationLoading
     }
   }
 </script>
